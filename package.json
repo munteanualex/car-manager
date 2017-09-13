@@ -1,0 +1,22 @@
+{
+  "name": "car-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "blessed": "^0.1.81"
+  },
+  "devDependencies": {},
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/munteanualex/car-manager.git"
+  },
+  "author": "Munteanu Alexandru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/munteanualex/car-manager/issues"
+  },
+  "homepage": "https://github.com/munteanualex/car-manager#readme"
+}
