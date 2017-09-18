@@ -98,22 +98,14 @@ var delCar = blessed.button({
 });
 
 addCar.on('press', function() {
-  form1.submit();
+  list.push('Add New');
 });
 
 delCar.on('press', function() {
-  form2.reset();
+  form2.submit('del');
 });
 
-form1.on('Add new car', function(data) {
-  form1.setContent('Submitted.');
-  screen.render();
-});
 
-form2.on('Delete old car', function(data) {
-  form.setContent('Deleted old car.');
-  screen.render();
-});
 
 screen.key('q', function() {
   process.exit(0);
@@ -121,23 +113,61 @@ screen.key('q', function() {
 
 screen.render();
 
+//prompt
+
+
+
+//list
+
+var list = blessed.list({  
+  parent: box,
+  width: '50%',
+  height: '50%',
+  top: 5,
+  right: 1,
+  align: 'center',
+  fg: 'blue',
+  border: {
+    type: 'line'
+  },
+  selectedBg: 'green',
+
+  // Allow mouse support
+  mouse: true,
+
+  // Allow key support (arrow keys + enter)
+  keys: true,
+
+  // Use vi built-in keys
+  vi: true
+});
+
+list.setItems([  
+  'Audi',
+  'BMW',
+  'VW',
+  'Ford',
+  'Mercedes',
+]);
+
+list.prepend(new blessed.Text({  
+  left: 2,
+  content: ' My list '
+}));
+
+list.select(0);
+
+screen.key('q', function(ch, key) {  
+  return process.exit(0);
+});
+
+screen.render();  
+
+
 
 // Append our box to the screen.
 screen.append(box);
 
-// If our box is clicked, change the content.
-box.on('click', function(data) {
-  box.setContent('{center}Some different {red-fg}content{/red-fg}.{/center}');
-  screen.render();
-});
-
-// If box is focused, handle `enter` and give us some more content.
-box.key('enter', function() {
-  box.setContent('{right}Even different {black-fg}content{/black-fg}.{/right}\n');
-  box.setLine(1, 'bar');
-  box.insertLine(1, 'foo');
-  screen.render();
-});
 
 // Quit on Escape, q, or Control-C.
 screen.key(['escape', 'q', 'C-c'], function(ch, key) {
